@@ -1,0 +1,84 @@
+#include <iostream>
+#include <cmath>
+#include <string>
+
+using namespace std;
+
+void Get_Coefficients(float*, float*, float*);
+float Calc_Discriminant(float*, float*, float*);
+float Calc_Roots_one(float, float, float);
+float Calc_Roots_two(float, float, float);
+
+
+
+int main()
+{
+float a, b, c, root_one, root_two;
+string answer;
+
+do {
+Get_Coefficients(&a, &b, &c);
+root_one = Calc_Roots_one(a, b, c);
+root_two = Calc_Roots_two(a, b, c);
+
+cout << "The first root is: " << root_one << endl;
+cout << "The second root is: " << root_two << endl;
+
+Calc_Discriminant(&a, &b, &c);
+cout << "Do you wish to continue? (yes/no): ";
+getline(cin, answer);
+} 
+while (answer =="yes");
+
+system("pause");
+return 0;
+}
+
+void Get_Coefficients(float *a_ptr, float *b_ptr, float *c_ptr)
+{
+cout << "Enter coefficients of the quadratic equation: " << endl;
+cin >> *a_ptr >> *b_ptr >> *c_ptr;
+cin.ignore();
+//cout << "a: " << *a_ptr << endl;
+//cout << "b: " << *b_ptr << endl;
+//cout << "c: " << *c_ptr << endl;?
+}
+
+float Calc_Roots_one(float a, float b, float c)
+{
+float n = ((b*b) - (4*(a*c)));
+float root1= (-b + sqrt(n)) /(2*a);
+return root1;
+}
+
+float Calc_Roots_two(float a, float b, float c)
+{
+float n = ((b*b) - (4*(a*c)));
+float root2= (-b - sqrt(n)) /(2*a);
+return root2;
+}
+
+float Calc_Discriminant(float *a_ptr, float *b_ptr, float *c_ptr)
+{
+float a = *a_ptr;
+float b = *b_ptr;
+float c = *c_ptr;
+float discriminant = sqrt((b*b) - (4*(a*c)));
+
+float r, s, i;
+
+if(discriminant > 0) {
+r = discriminant;
+cout << "The discriminant is: " << "r " << endl;
+return r;
+} else if (discriminant == 0) {
+s = discriminant;
+cout << "The discriminant is: " << "s" << endl;
+return s;
+} else if (discriminant < 0) {
+i = discriminant;
+cout << "The discriminant is: " << "i" << endl;
+return i;
+}
+
+}
